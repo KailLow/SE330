@@ -1,4 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+// require('dotenv').config();
+const nextConfig = {
+    images: {
+        domains: [
+            'www.google.com'
+        ]
+    }
+};
 
 export default nextConfig;
