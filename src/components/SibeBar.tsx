@@ -16,25 +16,25 @@ export default function Sibebar() {
             </Sidebar.Item>
         </Sidebar.ItemGroup>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="/staff" icon={HiIdentification} theme={customSideBarTheme?.item}>
-            User 
+          <Sidebar.Item href="/admin/staff" icon={HiIdentification} theme={customSideBarTheme?.item}>
+            Staff 
           </Sidebar.Item>
           <Sidebar.Item href="/customers" icon={HiUser}>
             Customer
           </Sidebar.Item>
-          <Sidebar.Item href="/product" icon={FaProductHunt}>
+          <Sidebar.Item href="/admin/product" icon={FaProductHunt}>
             Product 
           </Sidebar.Item>
           <Sidebar.Item href="/admin/category" icon={FaProductHunt}>
             Category
           </Sidebar.Item>
-          <Sidebar.Item href="/invoices" icon={FaFileInvoice}>
-            Invoices
+          <Sidebar.Item href="/admin/import" icon={FaFileInvoice}>
+            Import
           </Sidebar.Item>
-          <Sidebar.Item href="/inventory" icon={HiShoppingBag}>
-            Inventory
+          <Sidebar.Item href="/admin/invoice" icon={HiShoppingBag}>
+            Invoice
           </Sidebar.Item>
-          <Sidebar.Item href="/supplier" icon={FaStore}>
+          <Sidebar.Item href="/admin/supplier" icon={FaStore}>
             Supplier 
           </Sidebar.Item>
         </Sidebar.ItemGroup>
