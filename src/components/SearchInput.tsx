@@ -37,17 +37,13 @@ export default function SearchInput<T>({
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 title={title}
-                rightIcon={
-                    searchText ? (
-                        <IoMdClose className=" text-secondary-950" size={20} />
-                    ) : undefined
-                }
+                // rightIcon={<IoMdClose className=" text-secondary-950" size={20} />}
                 onRightIconClick={() => setSearchText("")}
                 placeholder={placeholder}
                 sizing="md"
             />
             {isOpen ? (
-                <div className=" w-full text-start absolute -bottom-2 translate-y-full bg-background-normal z-50 shadow-lg rounded-md">
+                <div className=" w-full text-start bg-white absolute -bottom-2 translate-y-full z-50 shadow-lg rounded-md">
                     {toggleCreating && searchText != "" ? (
                         <p
                             onClick={() => {
@@ -66,7 +62,7 @@ export default function SearchInput<T>({
                                 template ? (
                                     <div
                                         key={item.id}
-                                        className="hover:bg-background-hover transition-all duration-200 cursor-pointer"
+                                        className=" transition-all duration-200 cursor-pointer"
                                         onClick={() => {
                                             setSearchText("");
                                             onSelect?.(item);
@@ -76,7 +72,7 @@ export default function SearchInput<T>({
                                     </div>
                                 ) : (
                                     <div
-                                        className=" px-3 py-2 text-secondary-950 text-sm hover:bg-background-hover transition-all duration-200 cursor-pointer"
+                                        className=" hover:bg-zinc-400 rounded-md px-3 py-2 text-secondary-950 text-sm hover:bg-background-hover transition-all duration-200 cursor-pointer"
                                         onClick={() => {
                                             setSearchText("");
                                             onSelect?.(item);
@@ -89,13 +85,13 @@ export default function SearchInput<T>({
                             )
                         ) : isFetched ? (
                             <>
-                                <p className=" px-3 py-3 text-secondary-950 text-sm italic transition-all duration-200">
+                                <p className=" px-3 py-3 text-secondary-950 bg-white rounded-lg text-sm italic transition-all duration-200">
                                     No item found
                                 </p>
                             </>
                         ) : null
                     ) : (
-                        <Loading size="sm" className=" p-3" />
+                        <Loading /> 
                     )}
                 </div>
             ) : null}

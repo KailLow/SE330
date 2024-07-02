@@ -5,27 +5,24 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Product from "@/components/Product";
 import SidebarFilter from "@/components/SidebarFilter";
-import viewProductList from "@/api/product/viewProductList.api";
-import SEARCH_PARAMS from "@/constants/searchParams";
-import ProductPreview from "@/types/entity/ProductPreview";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import viewCartList from "@/api/cart/viewCart.api";
+import { CartProduct } from "@/types/entity/Cart";
 import { useQuery } from "react-query";
+import SEARCH_PARAMS from "@/constants/searchParams";
+import ProductCart from "@/components/ProductCart";
 
 
 export default function page() {
-  
-  const searchParams = useSearchParams();
-
-  const category = searchParams.get(SEARCH_PARAMS.categoryName) || "";
-  const productKeyword = searchParams.get(SEARCH_PARAMS.productName) || "";
-  const price = searchParams.get(SEARCH_PARAMS.price) || "";
-  const { data, isLoading, refetch } = useQuery<ProductPreview[]>(
-    ["products", productKeyword, category, price],
-    viewProductList,
-    {
-        retry: false,
-    },
-);
+    const searchParams = useSearchParams();
+    const supplierKeyword = "";
+    const { data, isLoading, refetch } = useQuery<CartProduct[]>(
+        ["cart", supplierKeyword],
+        viewCartList,
+        {
+            retry: false,
+        },
+    );
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-[#eff1f2]">
@@ -37,9 +34,9 @@ export default function page() {
           </div>
           <div className=" flex gap-6 w-4/5">
             {/* <Product name="Laptop Asus ROG Zephyrus Duo 15 GX551QR-HB120T" price="80000000" /> */}
-            {data?.map((product: any) => (
+            {data?.map((product: any, index) => (
               // eslint-disable-next-line react/jsx-key
-              <Product name={product.name} price={product.price} />
+              <ProductCart name={product.product.name} price={product.product.price} index={index} quantity={product.quantity} />
             ))}
           </div>
         </div>

@@ -1,8 +1,11 @@
 "use client";
 
+import viewCategoryList from '@/api/category/viewCategoryList.api';
 import Category from '@/types/entity/Category';
 import Supplier from '@/types/entity/Supplier';
 import { useState, ChangeEvent } from 'react';
+import { useQuery } from 'react-query';
+import SupplierFilter from './SupplierFilter';
 
 interface SidebarFilterProps {
     categories: Category[];
@@ -10,7 +13,7 @@ interface SidebarFilterProps {
     onFilterChange: (category: string | null, supplier: string | null) => void;
   }
 
-export default function SidebarFilter({ categories, suppliers, onFilterChange }: any) {
+export default function SidebarFilter({ onFilterChange }: any) {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [selectedSupplier, setSelectedSupplier] = useState<string | null>(null);
   
@@ -25,6 +28,12 @@ export default function SidebarFilter({ categories, suppliers, onFilterChange }:
       setSelectedSupplier(supplierId === selectedSupplier ? null : supplierId);
       onFilterChange(selectedCategory, supplierId === selectedSupplier ? null : supplierId);
     };
+
+    
+    const { data, isLoading } = useQuery<Category[]>(
+        ["category"],
+        viewCategoryList,
+    );
   
     return (
         <>
@@ -33,7 +42,7 @@ export default function SidebarFilter({ categories, suppliers, onFilterChange }:
 
                 <div className="mb-6">
                     <h3 className="text-md font-bold mb-2">Categories</h3>
-                    {categories.map((category : any) => (
+                    {data?.map((category : any) => (
                         <div key={category.id} className="flex items-center mb-2">
                             <input
                                 type="radio"
@@ -51,25 +60,7 @@ export default function SidebarFilter({ categories, suppliers, onFilterChange }:
                     ))}
                 </div>
 
-                <div className="mb-6">
-                    <h3 className="text-md font-bold mb-2">Suppliers</h3>
-                    {suppliers.map((supplier : any) => (
-                        <div key={supplier.id} className="flex items-center mb-2">
-                            <input
-                                type="radio"
-                                id={`supplier-${supplier.id}`}
-                                name="supplier"
-                                value={supplier.id}
-                                checked={selectedSupplier === supplier.id}
-                                onChange={handleSupplierChange}
-                                className="mr-2"
-                            />
-                            <label htmlFor={`supplier-${supplier.id}`} className="text-gray-700">
-                                {supplier.name}
-                            </label>
-                        </div>
-                    ))}
-                </div>
+                <SupplierFilter />        
             </div>
         </>
     )

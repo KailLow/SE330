@@ -1,6 +1,6 @@
 "use client";
 
-import API from "@/constants/apiEnpoint";
+import API from "@/constants/apiEndPoint";
 import {
     EntityType,
     PermissionResponse,

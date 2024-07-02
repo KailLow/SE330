@@ -19,6 +19,10 @@ export default function page() {
     const [status, setStatus] = useState(false);
     const router = useRouter();
 
+    const backHome = () => {
+        router.replace("/");    
+    }
+
     const handleLogin = async () => {
         const res = await publicFetcher(API.authentication.signIn, "POST", {
             email,
@@ -49,8 +53,11 @@ export default function page() {
     const [isSignIn, setIsSignIn] = useState(true);
     return (
         <main className="flex min-h-screen flex-col items-center justify-between bg-primary">
-            <div className=' mt-5'>
-                <span className="self-center text-4xl dark:text-white font-semibold text-secondary">Computer Shop</span>
+            <div className=' mt-5 flex'>
+                <span className="self-center text-4xl dark:text-white font-semibold text-secondary" >Computer Shop</span>
+                <Button className="bg-secondary text-white" onClick={backHome}>
+                    Home
+                </Button>
             </div>
             <div className=" w-1/2">
                 <div className="flex justify-center items-center h-screen">

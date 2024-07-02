@@ -16,7 +16,7 @@ export default function Product({ imageUrl, name, price }: any) {
     }
     return (
         <>
-            <div className="bg-white shadow-md w-64 rounded-xl border-xl border-gray-600 overflow-hidden p-1">
+            <div className="bg-white hover:bg-zinc-400 shadow-md w-64 h-fit rounded-xl border-xl border-gray-600 overflow-hidden p-1 transition-transform duration-300 hover:scale-105">
                 <div className="relative">
                     <Image
                         priority
