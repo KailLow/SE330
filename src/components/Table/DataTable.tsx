@@ -106,7 +106,7 @@ export default function DataTable<T extends Object & BaseEntity>({
                                             renderTrigger={() => (
                                                 <div>
                                                     <Button>
-                                                        <HiOutlineDotsVertical className=" w-4 h-4" />
+                                                        <HiOutlineDotsVertical className=" w-4 h-4 text-secondary" />
                                                     </Button>
                                                 </div>
                                             )}
